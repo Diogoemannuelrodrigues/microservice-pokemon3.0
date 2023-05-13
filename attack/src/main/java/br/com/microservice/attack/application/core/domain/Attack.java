@@ -1,4 +1,4 @@
-package br.com.microservice.attack.application.core.domain.entidade;
+package br.com.microservice.attack.application.core.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
