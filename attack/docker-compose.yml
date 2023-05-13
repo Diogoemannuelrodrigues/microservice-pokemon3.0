@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: attack
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      PGDATA: ./data/postgres
+    volumes:
+      - ./postgres:/data/postgres1
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
