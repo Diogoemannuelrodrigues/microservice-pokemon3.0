@@ -1,30 +1,42 @@
 package br.com.microservice.attack.application.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Id;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "attack")
-public class Attack implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Document(collection = "attack")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Attack {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
 
-    private String nameAttack;
+    private String name;
 
-    private Double strength;
+    private String type;
 
     private String category;
+
+    private Integer power;
+
+    private Double accurancy;
+
+    private Integer pp;
+
+    private List<String> changes;
+
+    private Effect effect;
+
+    private List<String> effects;
+
+    private Boolean highCriticalHitRatio;
 }
