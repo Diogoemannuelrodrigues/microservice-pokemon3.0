@@ -13,17 +13,13 @@ import java.util.List;
 public class AttackController {
     @Autowired
     private AttackService attackService;
-    @PostMapping
-    public Attack saveAttack(@RequestBody Attack attack){
-        return attackService.save(attack);
-    }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Attack> findAll(){
         return attackService.findAll();
     }
 
-    @PostMapping("/all")
+    @PostMapping
     public List<Attack> saveAll(@RequestBody List<Attack> attacks){
         return attackService.saveAll(attacks);
     }
