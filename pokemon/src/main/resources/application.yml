@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: 123456
+      database: mongo
+      port: 27017
+      host: ms-pokemon
+      uri: mongodb://localhost/ms-pokemon
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
