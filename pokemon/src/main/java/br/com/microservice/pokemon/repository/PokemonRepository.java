@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PokemonRepository extends MongoRepository<Pokemon, String> {
+//    Pokemon findByNational_Pokedex_Number(Integer id);
 }

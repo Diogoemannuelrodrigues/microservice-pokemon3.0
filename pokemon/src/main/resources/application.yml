@@ -7,13 +7,8 @@ spring:
       matching-strategy: ant_path_matcher
   data:
     mongodb:
-      authentication-database: admin
-      username: root
-      password: 123456
-      database: mongo
-      port: 27017
-      host: ms-pokemon
-      uri: mongodb://localhost/ms-pokemon
+      uri: mongodb://diogo123:diogo123@localhost:27017/ms-pokemon?authSource=admin
+
 
   autoconfigure:
     exclude:

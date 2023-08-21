@@ -16,4 +16,8 @@ public class PokemonService {
     public List<Pokemon> saveAll(List<Pokemon> pokemons){
         return repository.saveAll(pokemons);
     }
+
+//    public Pokemon findPokemon(Integer id){
+////       return repository.findByNational_Pokedex_Number(id);
+//    }
 }
