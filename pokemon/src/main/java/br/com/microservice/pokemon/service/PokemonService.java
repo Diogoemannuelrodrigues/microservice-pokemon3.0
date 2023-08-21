@@ -5,19 +5,21 @@ import br.com.microservice.pokemon.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class PokemonService {
 
     @Autowired
     private PokemonRepository repository;
 
-    public List<Pokemon> saveAll(List<Pokemon> pokemons){
-        return repository.saveAll(pokemons);
+    @Autowired
+    private ConvertDados convertDados;
+
+    public Pokemon convertPokemon(String json) {
+        var pokemon = convertDados.obterDados(json, Pokemon.class);
+        return repository.save(pokemon);
     }
 
-//    public Pokemon findPokemon(Integer id){
-////       return repository.findByNational_Pokedex_Number(id);
-//    }
+    public Pokemon findPokemon(String name){
+        return repository.findByName(name);
+    }
 }

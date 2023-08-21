@@ -1,6 +1,8 @@
 package br.com.microservice.pokemon.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,14 +17,22 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Document(collection = "pokemon")
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pokemon {
     @Id
     private String id;
-    private Integer national_pokedex_number;
+    @JsonAlias("abilities")
+    private List<AbilityInfo> abilities;
+    @JsonAlias("base_experience")
+    private String base_experience;
     private String name;
-    private BaseStats baseStats;
-    private List<String> types;
+    @JsonAlias("moves")
+    private List<MoveInfo> moves;
+    @JsonAlias("stats")
+    private List<StatInfo> states;
 
+    @JsonAlias("types")
+    private List<TypeInfo> types;
+    private Integer weight;
 
 }
