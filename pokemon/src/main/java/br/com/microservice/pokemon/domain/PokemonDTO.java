@@ -6,19 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "pokemon")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Pokemon {
-    @Id
+public class PokemonDTO {
+
     private String id;
     @JsonAlias("abilities")
     private List<AbilityInfo> abilities;
@@ -33,5 +30,4 @@ public class Pokemon {
     @JsonAlias("types")
     private List<TypeInfo> types;
     private Integer weight;
-
 }
