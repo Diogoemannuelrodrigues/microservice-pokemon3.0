@@ -1,16 +1,13 @@
 package br.com.microservice.pokemon.controller;
 
 import br.com.microservice.pokemon.domain.Pokemon;
+import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/pokemons")
@@ -20,7 +17,13 @@ public class PokemonController {
     private PokemonService service;
 
     @PostMapping
-    public List<Pokemon> saveAll(@RequestBody List<Pokemon> attacks){
-        return service.saveAll(attacks);
+    public Pokemon saveAll(@RequestBody String json){
+        return service.convertPokemon(json);
     }
+    @GetMapping(value = "/{name}")
+    public ResponseEntity<PokemonDTO> findByName(@PathVariable String name){
+        return ResponseEntity.ok().body(service.getPokemon(name));
+    }
+
+
 }
