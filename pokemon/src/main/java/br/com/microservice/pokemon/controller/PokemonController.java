@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pokemons")
@@ -23,6 +24,16 @@ public class PokemonController {
     @GetMapping(value = "/{name}")
     public ResponseEntity<PokemonDTO> findByName(@PathVariable String name){
         return ResponseEntity.ok().body(service.getPokemon(name));
+    }
+
+    @GetMapping
+    public ResponseEntity<String> starTheGame(){
+        return ResponseEntity.ok().body(service.starTheGame());
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<PokemonDTO>> findAllPokemons() throws IOException {
+        return ResponseEntity.ok().body(service.findAllPokemon());
     }
 
 

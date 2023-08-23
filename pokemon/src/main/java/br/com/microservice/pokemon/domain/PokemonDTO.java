@@ -17,17 +17,7 @@ import java.util.List;
 public class PokemonDTO {
 
     private String id;
-    @JsonAlias("abilities")
-    private List<AbilityInfo> abilities;
-    @JsonAlias("base_experience")
-    private String base_experience;
     private String name;
-    @JsonAlias("moves")
-    private List<MoveInfo> moves;
-    @JsonAlias("stats")
-    private List<StatInfo> states;
-
     @JsonAlias("types")
     private List<TypeInfo> types;
-    private Integer weight;
 }
