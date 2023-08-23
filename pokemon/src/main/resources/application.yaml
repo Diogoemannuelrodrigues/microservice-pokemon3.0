@@ -2,12 +2,30 @@ server:
   port: 8080
 
 spring:
+  #JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    #Datasource
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/stones
+    username: postgres
+    password: 123456
+
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   data:
     mongodb:
       uri: mongodb://diogo123:diogo123@localhost:27017/ms-pokemon?authSource=admin
+
 
   autoconfigure:
     exclude:

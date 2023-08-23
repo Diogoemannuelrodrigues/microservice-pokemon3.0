@@ -4,6 +4,7 @@ import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.repository.PokemonRepository;
 import br.com.microservice.pokemon.service.clients.PokeFeingClient;
+import br.com.microservice.pokemon.utils.ConvertDados;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

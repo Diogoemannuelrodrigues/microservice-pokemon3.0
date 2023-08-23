@@ -1,4 +1,4 @@
-package br.com.microservice.pokemon.service;
+package br.com.microservice.pokemon.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
