@@ -18,7 +18,6 @@ spring:
     username: postgres
     password: 123456
 
-
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -30,3 +29,10 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+pokeapi:
+  url: https://pokeapi.co/api/v2/
+  glitch: https://pokeapi.glitch.me/v1/
+
+stoneapi:
+  url: https://pokeapi.glitch.me/v1/
