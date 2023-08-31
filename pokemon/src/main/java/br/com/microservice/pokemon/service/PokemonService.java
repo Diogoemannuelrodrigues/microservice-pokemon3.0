@@ -1,6 +1,7 @@
 package br.com.microservice.pokemon.service;
 
 import br.com.microservice.pokemon.domain.EvolutionDTO;
+import br.com.microservice.pokemon.domain.MoveInfo;
 import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.repository.PokemonRepository;
@@ -14,7 +15,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -23,17 +23,14 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class PokemonService {
-
     @Autowired
     private PokemonRepository repository;
     @Autowired
     private PokeFeingClient pokeFeingClient;
     @Autowired
     private GlitchfeignClient glitchfeignClient;
-
     @Autowired
     private ConvertDados convertDados;
-
     @Autowired
     private ModelMapper mapper;
 
@@ -43,14 +40,17 @@ public class PokemonService {
     }
 
     public Optional<Pokemon> findById(String id){
-        return repository.findById(id);
+        var pokemon = repository.findById(id);
+        var moves = pokemon.get().getMoves().subList(0, 4);
+        pokemon.get().setMoves(moves);
+        return pokemon;
     }
 
     public PokemonDTO getPokemon(String name){
         return pokeFeingClient.getPkemonDTO(name);
     }
 
-    public Optional<EvolutionDTO> getPokemonByGlitch(String name) {
+    public Optional<EvolutionDTO> getEvolucaoPokemonByGlitch(String name) {
         Gson gson = new Gson();
         var jsonResponse = glitchfeignClient.getPokemonDTO(name);
         EvolutionDTO[] array = gson.fromJson(jsonResponse, EvolutionDTO[].class);
@@ -63,12 +63,20 @@ public class PokemonService {
             var pokeConverted = convertDados.obterDados(poke, Pokemon.class);
             repository.save(pokeConverted);
             log.info(String.valueOf(pokeConverted));
-        }
+            }
 
         return "the game can start now";
     }
 
-    public List<PokemonDTO> findAllPokemon() throws IOException {
+    public Optional<MoveInfo> getAdicionaMove(Pokemon pokemon, String nameMove){
+        return pokemon
+                .getMoves() //pega os moves
+                .stream() //faz o stream
+                .filter(moveInfo -> moveInfo.getMove().getName().contains(nameMove)) //filtra por nameMOve
+                .findFirst(); //Retorna o 1 que achou
+    }
+
+    public List<PokemonDTO> findAllPokemon() {
         return repository
                 .findAll()
                 .stream()
