@@ -1,16 +1,22 @@
 package br.com.microservice.pokemon.service;
 
+import br.com.microservice.pokemon.domain.Move;
+import br.com.microservice.pokemon.domain.MoveInfo;
 import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.repository.PokemonRepository;
+import br.com.microservice.pokemon.utils.ConvertDados;
 import lombok.var;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static com.mongodb.assertions.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class PokemonServiceTest {
@@ -18,23 +24,39 @@ class PokemonServiceTest {
     private PokemonService service;
 
     @Mock
+    private ConvertDados convertDados;
+
+    @Mock
     private PokemonRepository repository;
 
-//    @Test
-//    void testSave(){
-//        Gson gson = new Gson();
-//        String json = json();
-//        gson.toJson(json);
-//        var result = service.convertPokemon(json);
-//        assertNotNull(result);
-//
-//    }
+    @Test
+    @DisplayName("Test SAVE")
+    void testSave(){
+        Pokemon pokemon = Pokemon.builder().id("1").build();
+        String json = json();
+        Mockito.when(repository.save(Mockito.any())).thenReturn(pokemon);
+        Mockito.when(convertDados.obterDados(json, Pokemon.class)).thenReturn(pokemon);
+
+        var result = service.convertPokemon(json);
+        assertNotNull(result);
+        assertEquals(result.getId(), pokemon.getId());
+
+    }
 
     @Test
+    @DisplayName("Test FINDBYID")
     void findById(){
         var id = "1";
-        Pokemon poke = Pokemon.builder().id("1").build();
-        Mockito.when(service.findById(id)).thenReturn(Optional.ofNullable(poke));
+        var move1 = MoveInfo.builder().build();
+        move1.setMove(Move.builder().name("test").url("test").build());
+
+        Pokemon pokemon =
+                Pokemon.builder()
+                        .id(id)
+                        .moveInfos(Arrays.asList(move1, move1, move1, move1, move1))
+                .build();
+
+        Mockito.when(service.findById(id)).thenReturn(Optional.ofNullable(pokemon));
 
         var result = service.findById(id);
         assertNotNull(result);

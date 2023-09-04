@@ -1,7 +1,10 @@
 server:
-  port: 8080
+  port: 0
 
 spring:
+  application:
+    name: mspokemon
+
   #JPA properties
   jpa:
     hibernate:
@@ -25,10 +28,16 @@ spring:
     mongodb:
       uri: mongodb://diogo123:diogo123@localhost:27017/ms-pokemon?authSource=admin
 
-
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 pokeapi:
   url: https://pokeapi.co/api/v2/
