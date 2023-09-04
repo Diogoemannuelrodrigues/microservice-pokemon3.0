@@ -23,7 +23,7 @@ public class Pokemon {
     private String base_experience;
     private String name;
     @JsonAlias("moves")
-    private List<MoveInfo> moves;
+    private List<MoveInfo> moveInfos;
     @JsonAlias("stats")
     private List<StatInfo> states;
 

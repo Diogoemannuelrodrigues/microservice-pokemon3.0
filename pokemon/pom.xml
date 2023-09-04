@@ -18,6 +18,7 @@
 		<springfox-version>2.9.2</springfox-version>
 		<spring-cloud-openfeign>3.0.2</spring-cloud-openfeign>
 		<gson-version>2.9.1</gson-version>
+		<eureka-version>3.0.6</eureka-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -83,6 +84,12 @@
 			<artifactId>gson</artifactId>
 			<version>${gson-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>${eureka-version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

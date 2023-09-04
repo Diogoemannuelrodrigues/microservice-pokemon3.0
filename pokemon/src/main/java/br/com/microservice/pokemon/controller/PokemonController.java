@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/pokemons")
+@RequestMapping("/api/v1/pokemon")
 public class PokemonController {
 
     @Autowired

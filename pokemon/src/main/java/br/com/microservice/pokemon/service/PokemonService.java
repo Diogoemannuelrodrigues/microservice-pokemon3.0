@@ -41,9 +41,12 @@ public class PokemonService {
 
     public Optional<Pokemon> findById(String id){
         var pokemon = repository.findById(id);
-        var moves = pokemon.get().getMoves().subList(0, 4);
-        pokemon.get().setMoves(moves);
-        return pokemon;
+        if(pokemon.isPresent()){
+            var moves = pokemon.get().getMoveInfos().subList(0, 4);
+            pokemon.get().setMoveInfos(moves);
+            return pokemon;
+        }
+        return Optional.empty();
     }
 
     public PokemonDTO getPokemon(String name){
@@ -70,7 +73,7 @@ public class PokemonService {
 
     public Optional<MoveInfo> getAdicionaMove(Pokemon pokemon, String nameMove){
         return pokemon
-                .getMoves() //pega os moves
+                .getMoveInfos() //pega os moves
                 .stream() //faz o stream
                 .filter(moveInfo -> moveInfo.getMove().getName().contains(nameMove)) //filtra por nameMOve
                 .findFirst(); //Retorna o 1 que achou
