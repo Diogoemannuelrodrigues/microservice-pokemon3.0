@@ -24,11 +24,11 @@ public class AttackService {
         return attackRepository.saveAll(atacks);
     }
 
-    public Attack findByName(String name) {
-        return attackRepository.findByName(name);
+    public Attack findByName(String movimento) {
+        return attackRepository.findByName(movimento);
     }
 
-    public List<Attack> findAttacksByType(String type){
-        return attackRepository.findByType(type);
+    public List<Attack> findAttacksByType(String tipo){
+        return attackRepository.findByType(tipo);
     }
 }

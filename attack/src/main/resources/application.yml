@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 0
 
 spring:
   mvc:
@@ -18,4 +18,10 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
 

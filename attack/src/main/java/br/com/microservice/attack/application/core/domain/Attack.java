@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,23 +19,11 @@ public class Attack {
     @Id
     private String id;
 
-    private String name;
+    private String movimento;
 
-    private String type;
+    private String traducao;
 
-    private String category;
+    private String tipo;
 
-    private Integer power;
-
-    private Double accurancy;
-
-    private Integer pp;
-
-    private List<String> changes;
-
-    private Effect effect;
-
-    private List<String> effects;
-
-    private Boolean highCriticalHitRatio;
+    private String geracao;
 }
