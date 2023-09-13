@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres
-    container_name: postgres
+    container_name: ms-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
@@ -14,6 +14,7 @@ services:
 
   mongo:
     image: mongo
+    container_name: ms-mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: diogo123
       MONGO_INITDB_ROOT_PASSWORD: diogo123
