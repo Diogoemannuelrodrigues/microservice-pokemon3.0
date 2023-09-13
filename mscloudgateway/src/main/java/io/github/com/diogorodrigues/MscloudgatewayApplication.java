@@ -28,6 +28,8 @@ public class MscloudgatewayApplication {
 					.route(r -> r.path("/api/v1/treinador").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador/name/{name}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador/{id}").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/treinador/adiciona/{treinador}").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/treinador/verificaEvolution/{treinador}/pokemon/{pokemonName}/stone/{stone}").uri(MSPOKEMON))
 				.build();
 	}
 
