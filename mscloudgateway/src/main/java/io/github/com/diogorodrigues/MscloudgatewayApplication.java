@@ -21,15 +21,17 @@ public class MscloudgatewayApplication {
 		return builder
 				.routes()
 					.route(r -> r.path("/api/v1/pokemon").uri(MSPOKEMON))
-					.route(r -> r.path("/api/v1/pokemon/{name}").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/pokemon/name/{name}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/pokemon/all").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/pokemon/{id}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/pokemon/evolutions/{name}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/pokemon/information/{name}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador/name/{name}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador/{id}").uri(MSPOKEMON))
 					.route(r -> r.path("/api/v1/treinador/adiciona/{treinador}").uri(MSPOKEMON))
-					.route(r -> r.path("/api/v1/treinador/verificaEvolution/{treinador}/pokemon/{pokemonName}/stone/{stone}").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/pokemon/verificaEvolution/{treinador}/pokemon/{pokemonName}/stone/{stone}").uri(MSPOKEMON))
+					.route(r -> r.path("/api/v1/pokemon/evoluir/{pokemonName}/teinador/{treinador}").uri(MSPOKEMON))
 				.build();
 	}
 

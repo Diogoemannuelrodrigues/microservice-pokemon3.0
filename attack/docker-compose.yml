@@ -1,16 +1,12 @@
 version: '3.8'
 services:
-  mongodb:
-    image: mongo
-    ports:
-      - 27017:27017
-
-  mongo-express:
-    image: mongo-express
-    ports:
-      - 8080:8081
+  postgres:
+    image: postgres
+    container_name: ms-postgres
     environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=123456
-      - ME_CONFIG_MONGODB_SERVER=mongo
-    restart: always
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres-network

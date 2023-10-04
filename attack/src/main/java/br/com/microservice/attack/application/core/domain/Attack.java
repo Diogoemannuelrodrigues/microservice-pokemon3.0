@@ -1,29 +1,24 @@
 package br.com.microservice.attack.application.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Document(collection = "attack")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity(name = "attack")
 public class Attack {
     @Id
-    private String id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String movimento;
-
     private String traducao;
-
     private String tipo;
-
     private String geracao;
 }
