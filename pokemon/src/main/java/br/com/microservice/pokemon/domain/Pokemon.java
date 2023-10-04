@@ -20,13 +20,12 @@ public class Pokemon {
     @JsonAlias("abilities")
     private List<AbilityInfo> abilities;
     @JsonAlias("base_experience")
-    private String base_experience;
+    private String baseExperience;
     private String name;
     @JsonAlias("moves")
     private List<MoveInfo> moveInfos;
     @JsonAlias("stats")
     private List<StatInfo> states;
-
     @JsonAlias("types")
     private List<TypeInfo> types;
     private Integer weight;

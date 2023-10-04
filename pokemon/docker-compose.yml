@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  postgres:
-    image: postgres
-    container_name: ms-postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456
-    ports:
-      - "5432:5432"
-    networks:
-      - postgres-network
-
   mongo:
     image: mongo
     container_name: ms-mongo

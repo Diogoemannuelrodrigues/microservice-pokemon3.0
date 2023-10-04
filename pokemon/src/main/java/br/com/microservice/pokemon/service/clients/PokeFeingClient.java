@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface PokeFeingClient {
 
     @GetMapping(value = "pokemon/{name}")
-    PokemonDTO getPkemonDTO(@PathVariable("name") String name);
+    PokemonDTO getPokemonDTO(@PathVariable("name") String name);
 
     @GetMapping(value = "pokemon/{id}")
     String getPkemonById(@PathVariable("id") Integer id);

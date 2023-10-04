@@ -21,11 +21,8 @@ public class Treinador {
     @Id
     private String id;
     private String name;
-
     private List<Insignia> Insignias;
-
     private List<Pokemon> pokemons;
-
     private Bag bag;
 
 }

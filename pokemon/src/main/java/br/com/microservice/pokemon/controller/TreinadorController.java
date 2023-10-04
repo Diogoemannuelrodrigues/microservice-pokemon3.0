@@ -19,17 +19,23 @@ public class TreinadorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Treinador> save(@RequestBody TreinadorDto treinadorDto){
+    public ResponseEntity<Treinador> save(@RequestBody TreinadorDto treinadorDto) {
         return ResponseEntity.ok().body(service.save(treinadorDto));
     }
 
-    @GetMapping(value = "/{name}")
-    public ResponseEntity<Treinador> findByName(@PathVariable String name){
+    @GetMapping(value = "/name/{name}")
+    public ResponseEntity<Treinador> findByName(@PathVariable String name) {
         return ResponseEntity.ok().body(service.findByName(name));
     }
 
-    @GetMapping(value = "treinador/{id}")
-    public ResponseEntity<Optional<Treinador>> findById(@PathVariable String id){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Optional<Treinador>> findById(@PathVariable String id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
+
+    @GetMapping(value = "/adiciona/{treinador}/")
+    public ResponseEntity<Treinador> findTreinadorandPOkemon(@PathVariable String treinador) {
+        return ResponseEntity.ok().body(service.adicionaPokemonParaTreinador(treinador));
+    }
+
 }

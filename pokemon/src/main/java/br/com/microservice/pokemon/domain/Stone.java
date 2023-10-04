@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document(collection = "pokemon")
+@Entity(name = "stone")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Stone {
 
@@ -27,7 +28,6 @@ public class Stone {
     private Integer id;
     @JsonAlias("name")
     private String name;
-
     private List<Effect> effects;
 
 
