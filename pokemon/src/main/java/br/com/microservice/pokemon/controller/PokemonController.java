@@ -55,7 +55,7 @@ public class PokemonController {
     }
 
     @GetMapping(value = "/evoluir/{pokemonName}/teinador/{treinador}")
-    public ResponseEntity<Pokemon> evlouirPokemon(@PathVariable String pokemonName,
+    public ResponseEntity<String> evlouirPokemon(@PathVariable String pokemonName,
                                                   @PathVariable String treinador) {
         return ResponseEntity.ok().body(service.getEvoluirPokemon(pokemonName, treinador));
     }

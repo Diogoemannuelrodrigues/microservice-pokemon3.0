@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PokemonService {
+    public static final String NAO_PODE_SER_EVOLUIDO = "O pokemon nao pode ser evoluido";
+    public static final String POKEMON_EVOLUIDO = "Pokemon evoluido";
+
     private final PokemonRepository repository;
     private final PokeFeingClient pokeFeingClient;
     private final GlitchfeignClient glitchfeignClient;
@@ -81,10 +84,9 @@ public class PokemonService {
                 stream().
                 map(pokemon -> mapper.map(pokemon, PokemonDTO.class)).
                 collect(Collectors.toList());
-
     }
 
-    public Pokemon getEvoluirPokemon(String pokemon, String treinador1) {
+    public String getEvoluirPokemon(String pokemon, String treinador1) {
         var pokemonToLowerCase = pokemon.toLowerCase();
         var pokemon1 = repository.findByName(pokemonToLowerCase);
         var treinador = treinadorRepository.findByNameIgnoreCase(treinador1);
@@ -98,11 +100,6 @@ public class PokemonService {
 
         if(isPresent) {
 
-            var moves = treinador.getPokemons()
-                    .stream()
-                    .flatMap(pokmeon2 -> pokmeon2.getMoveInfos().stream())
-                    .collect(Collectors.toList());
-
             var containPokemon = treinador.getPokemons()
                     .stream()
                     .filter(pokemon2 -> pokemon2.getName().equalsIgnoreCase(pokemonToLowerCase))
@@ -110,9 +107,8 @@ public class PokemonService {
                     .orElse(null);
 
             assert containPokemon != null;
-            containPokemon.setMoveInfos(moves);
+            containPokemon.setMoveInfos(pokemon1.getMoveInfos());
 
-            //Essa linha ta com erro.
             assert verificaProximaEvolucao != null;
             String next = verificaProximaEvolucao.getFamily().getEvolutionLine()
                     .stream() //Stream
@@ -120,11 +116,22 @@ public class PokemonService {
                     .findFirst()
                     .orElse(null);
 
-            containPokemon.setName(next);
-            return containPokemon;
+            var vericaSeFamiliaEhMaiorQueEstagioAtual = verificaProximaEvolucao.getFamily().getEvolutionStage() >
+                    verificaProximaEvolucao.getFamily().getEvolutionLine().size();
+
+            if(next != null && !vericaSeFamiliaEhMaiorQueEstagioAtual){
+                var pokeNewEvolution = repository.findByName(next.toLowerCase());
+                containPokemon.setName(next);
+                containPokemon.setStates(pokeNewEvolution.getStates());
+                containPokemon.setId(pokeNewEvolution.getId());
+                containPokemon.setWeight(pokeNewEvolution.getWeight());
+                treinadorRepository.save(treinador);
+                return POKEMON_EVOLUIDO;
+            }
+                return NAO_PODE_SER_EVOLUIDO;
         }
 
-        return null;
+        return NAO_PODE_SER_EVOLUIDO;
     }
 
     private static List<String> getEvolutionLine(Optional<EvolutionDTO> verificaProximaEvolucao) {
