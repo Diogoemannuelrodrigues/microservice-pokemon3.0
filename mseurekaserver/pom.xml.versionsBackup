@@ -53,7 +53,7 @@
 				<artifactId>dockerfile-maven-plugin</artifactId>
 				<version>${dockerfile-maven-version}</version>
 				<configuration>
-					<repository>diogoemannuel/teste</repository>
+					<repository>diogoemannuel/eureka</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
 						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
@@ -62,7 +62,6 @@
 				<executions>
 					<execution>
 						<id>default</id>
-						<phase>install</phase>
 						<goals>
 							<goal>build</goal>
 							<goal>push</goal>
@@ -70,9 +69,8 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
-		<finalName>eureka</finalName>
+		<finalName>spring-boot-docker-maven</finalName>
 	</build>
 
 </project>
