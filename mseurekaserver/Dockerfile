@@ -2,10 +2,10 @@ FROM openjdk:11-jre
 
 WORKDIR /app
 
-COPY target/eureka-server-0.0.1-SNAPSHOT.jar /app/eureka.jar
+ARG JAR_FILE
+
+COPY target/${JAR_FILE} /app/eureka.jar
 
 EXPOSE 8761
 
-CMD ["java","-jar", "eureka.jar"]
-
-#lembra de colocar na rede --network#
+CMD ["java","-jar","eureka.jar"]
