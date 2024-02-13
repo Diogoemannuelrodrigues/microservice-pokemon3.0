@@ -10,11 +10,11 @@
 	</parent>
 	<groupId>br.com.microservice.pokemon</groupId>
 	<artifactId>pokemon</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<name>pokemon</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java-version>11</java-version>
+		<java-version>17</java-version>
 		<springfox-version>2.9.2</springfox-version>
 		<spring-cloud-openfeign>3.0.2</spring-cloud-openfeign>
 		<gson-version>2.9.1</gson-version>
