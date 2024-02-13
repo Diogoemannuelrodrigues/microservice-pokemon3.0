@@ -24,6 +24,8 @@ public class Pokemon {
     private String name;
     @JsonAlias("moves")
     private List<MoveInfo> moveInfos;
+    @JsonAlias("sprites")
+    private Sprites sprites;
     @JsonAlias("stats")
     private List<StatInfo> states;
     @JsonAlias("types")

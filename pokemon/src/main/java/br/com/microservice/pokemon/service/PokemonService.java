@@ -87,26 +87,21 @@ public class PokemonService {
     }
 
     public String getEvolvePokémon(String pokemon, String treinador1) {
-        var pokemonToLowerCase = pokemon.toLowerCase();
-        var pokemon1 = repository.findByName(pokemonToLowerCase);
         var treinador = treinadorRepository.findByNameIgnoreCase(treinador1);
 
-        var verificaProximaEvolucao = getNextEvolucaoPokemonByGlitch(pokemon1.getName()).orElse(null);
+        var verificaProximaEvolucao = getNextEvolucaoPokemonByGlitch(pokemon).orElse(null);
         var familyEvolution = getEvolutionLine(Optional.ofNullable(verificaProximaEvolucao));
 
         boolean isPresent = familyEvolution.stream()
                 .map(String::toLowerCase)
-                .anyMatch(listPokemon -> listPokemon.equals(pokemonToLowerCase));
+                .anyMatch(listPokemon -> listPokemon.equals(pokemon));
 
         if(isPresent) {
             var containPokemon = treinador.getPokemons()
                     .stream()
-                    .filter(pokemon2 -> pokemon2.getName().equalsIgnoreCase(pokemonToLowerCase))
+                    .filter(pokemon2 -> pokemon2.getName().equalsIgnoreCase(pokemon))
                     .findFirst()
                     .orElse(null);
-
-            assert containPokemon != null;
-            containPokemon.setMoveInfos(pokemon1.getMoveInfos());
 
             assert verificaProximaEvolucao != null;
             String next = verificaProximaEvolucao.getFamily().getEvolutionLine()
