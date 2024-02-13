@@ -144,7 +144,7 @@ public class PokemonService {
 
         var pokemon = getByPokemon(namePoke, treinador1);
 
-        var resultValidate = getCheckIfItCanEvolve(pokemon.get(), stone);
+        var resultValidate = pokemon.isPresent() && getCheckIfItCanEvolve(pokemon.get(), stone);
         if (resultValidate){
             return "Seu pokemon evoluiu com a pedra " + stone;
         }
