@@ -14,8 +14,11 @@ import java.util.Optional;
 @RequestMapping("/api/v1/treinador")
 public class TreinadorController {
 
-    @Autowired
-    private TreinadorService service;
+    private final TreinadorService service;
+
+    public TreinadorController(TreinadorService service) {
+        this.service = service;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -35,7 +38,7 @@ public class TreinadorController {
 
     @GetMapping(value = "/adiciona/{treinador}/")
     public ResponseEntity<Treinador> findTreinadorandPOkemon(@PathVariable String treinador) {
-        return ResponseEntity.ok().body(service.adicionaPokemonParaTreinador(treinador));
+        return ResponseEntity.ok().body(service.addPokemonToTrainer(treinador));
     }
 
 }

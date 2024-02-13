@@ -86,7 +86,7 @@ public class PokemonService {
                 collect(Collectors.toList());
     }
 
-    public String getEvoluirPokemon(String pokemon, String treinador1) {
+    public String getEvolvePokémon(String pokemon, String treinador1) {
         var pokemonToLowerCase = pokemon.toLowerCase();
         var pokemon1 = repository.findByName(pokemonToLowerCase);
         var treinador = treinadorRepository.findByNameIgnoreCase(treinador1);
@@ -99,7 +99,6 @@ public class PokemonService {
                 .anyMatch(listPokemon -> listPokemon.equals(pokemonToLowerCase));
 
         if(isPresent) {
-
             var containPokemon = treinador.getPokemons()
                     .stream()
                     .filter(pokemon2 -> pokemon2.getName().equalsIgnoreCase(pokemonToLowerCase))
@@ -145,7 +144,7 @@ public class PokemonService {
 
         var pokemon = getByPokemon(namePoke, treinador1);
 
-        var resultValidate = getVerificaSePodeEvoluir(pokemon.get(), stone);
+        var resultValidate = getCheckIfItCanEvolve(pokemon.get(), stone);
         if (resultValidate){
             return "Seu pokemon evoluiu com a pedra " + stone;
         }
@@ -164,7 +163,7 @@ public class PokemonService {
     /**
      *  Metodo para verificar se pode evoluir o pokemon com pedra de evolucao..
      * */
-    public Boolean getVerificaSePodeEvoluir(Pokemon pokemon, String pedra) {
+    public Boolean getCheckIfItCanEvolve(Pokemon pokemon, String pedra) {
         Stone stone = stoneService.getStoneByName(pedra);
 
         for (Object object : stone.getEffects()) {
