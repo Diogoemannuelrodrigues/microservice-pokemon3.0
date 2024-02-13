@@ -3,7 +3,6 @@ package br.com.microservice.pokemon.controller;
 import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.service.PokemonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +13,11 @@ import java.util.Optional;
 @RequestMapping("/api/v1/pokemon")
 public class PokemonController {
 
-    @Autowired
-    private PokemonService service;
+    private final PokemonService service;
+
+    public PokemonController(PokemonService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public Pokemon saveAll(@RequestBody String json){
@@ -36,7 +38,8 @@ public class PokemonController {
     public ResponseEntity<List<PokemonDTO>> findAllPokemons() {
         return ResponseEntity.ok().body(service.findAllPokemon());
     }
-
+    //TODO
+    //Ajustar metodo para trazer somente a proixma evolucao,se tiver.
     @GetMapping(value = "evolutions/{name}")
     public ResponseEntity<Object> findByFamilyName(@PathVariable String name) {
         return ResponseEntity.ok().body(service.getNextEvolucaoPokemonByGlitch(name));
@@ -57,7 +60,7 @@ public class PokemonController {
     @GetMapping(value = "/evoluir/{pokemonName}/teinador/{treinador}")
     public ResponseEntity<String> evlouirPokemon(@PathVariable String pokemonName,
                                                   @PathVariable String treinador) {
-        return ResponseEntity.ok().body(service.getEvoluirPokemon(pokemonName, treinador));
+        return ResponseEntity.ok().body(service.getEvolvePokémon(pokemonName, treinador));
     }
 
 }

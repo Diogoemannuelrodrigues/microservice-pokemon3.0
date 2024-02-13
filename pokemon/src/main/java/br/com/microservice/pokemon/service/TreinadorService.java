@@ -1,5 +1,6 @@
 package br.com.microservice.pokemon.service;
 
+import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.domain.Treinador;
 import br.com.microservice.pokemon.domain.TreinadorDto;
 import br.com.microservice.pokemon.repository.PokemonRepository;
@@ -9,8 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.var;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -28,10 +32,10 @@ public class TreinadorService {
 
     public Treinador save(TreinadorDto treinadorDto) {
         var existTrainer = findByName(treinadorDto.getName());
-        if (isNull(existTrainer)) {
+        if (isNull(existTrainer)){
             return treinadorRepository.save(mapper.map(treinadorDto, Treinador.class));
         }
-        throw new TreinadorNaoEncontradoException("Treinador nao encontrado");
+        throw new TreinadorNaoEncontradoException("Trainer: "+ treinadorDto.getName()+ " already exists");
     }
 
     public Treinador findByName(String name) {
@@ -47,23 +51,34 @@ public class TreinadorService {
         throw new TreinadorNaoEncontradoException("Treiandor nao encontrado com esse id =" + id);
     }
 
-    public Treinador adicionaPokemonParaTreinador(String treinadorName) {
-        Random random = new Random();
-        int idPokemon = random.nextInt(148) + 1;
+    public Treinador addPokemonToTrainer(String trainer) {
+
+        int idPokemon = getIdRandom();
 
         var pokemon = pokemonRepository.findById(String.valueOf(idPokemon));
-        var treinador = treinadorRepository.findByNameIgnoreCase(treinadorName);
+        var treinador = treinadorRepository.findByNameIgnoreCase(trainer);
+
+        if (treinador.getPokemons() == null) {
+            treinador.setPokemons(new ArrayList<>());
+        }
 
         pokemon.ifPresent(pokemon1 -> pokemon1.getMoveInfos().clear());
-
-        if(treinador.getPokemons().size() > 0 && pokemon.isPresent()){
-            treinador.getPokemons().add(pokemon.get());
-        }
+        pokemon.ifPresent(pokemon2 -> treinador.getPokemons().add(pokemon2));
 
         treinadorRepository.save(treinador);
         return treinador;
     }
 
+    public int getIdRandom(){
+        Random random = new Random();
+        return random.nextInt(148) + 1;
+    }
+
+
+    //TODO
+//    public String adicionaPokemonInicial(){
+//    Adiciona pokemons iniciais, Bulbasaur, Squertle and Charmander
+//    }
 
 
 

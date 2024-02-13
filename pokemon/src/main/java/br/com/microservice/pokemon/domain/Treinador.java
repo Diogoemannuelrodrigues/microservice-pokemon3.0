@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,8 +22,8 @@ public class Treinador {
     @Id
     private String id;
     private String name;
-    private List<Insignia> Insignias;
-    private List<Pokemon> pokemons;
+    private List<Insignia> insignias;
+    private List<Pokemon> pokemons = new ArrayList<>();
     private Bag bag;
 
 }
