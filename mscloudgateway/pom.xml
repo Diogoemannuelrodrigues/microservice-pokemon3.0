@@ -10,11 +10,11 @@
 	</parent>
 	<groupId>io.github.com.diogorodrigues</groupId>
 	<artifactId>mscloudgateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>mscloudgateway</name>
 	<description>Gateway cloud - Mspokemon</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.8</spring-cloud.version>
 		<eureka-version>3.0.6</eureka-version>
 	</properties>
