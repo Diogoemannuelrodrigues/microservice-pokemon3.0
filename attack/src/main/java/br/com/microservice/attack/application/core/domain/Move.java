@@ -13,12 +13,11 @@ import javax.persistence.Id;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity(name = "attack")
-public class Attack {
+public class Move {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String movimento;
-    private String traducao;
-    private String tipo;
-    private String geracao;
+    private String name;
+    private String url;
 }
