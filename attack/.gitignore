@@ -31,7 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### MAC ###
-.DS_Store
-.DS_Store?

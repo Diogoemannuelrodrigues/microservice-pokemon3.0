@@ -1,4 +1,4 @@
-package br.com.microservice.attack.application.service.clients;
+package io.github.com.attack.service.clients;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

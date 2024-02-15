@@ -2,6 +2,8 @@ server:
   port: 0
 
 spring:
+  application:
+    name: msattack
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,4 +31,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 

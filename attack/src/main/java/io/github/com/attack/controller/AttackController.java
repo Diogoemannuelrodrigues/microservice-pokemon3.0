@@ -1,8 +1,7 @@
-package br.com.microservice.attack.application.controller;
+package io.github.com.attack.controller;
 
-import br.com.microservice.attack.application.core.domain.Move;
-import br.com.microservice.attack.application.service.AttackService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.github.com.attack.entity.Move;
+import io.github.com.attack.service.AttackService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/attack")
 public class AttackController {
-    @Autowired
     private AttackService attackService;
+
+    public AttackController(AttackService attackService) {
+        this.attackService = attackService;
+    }
 
     @GetMapping
     public List<Move> findAll(){
@@ -28,6 +30,12 @@ public class AttackController {
     @ResponseStatus(HttpStatus.OK)
     public List<Move> findByCategory(@PathVariable String type){
         return attackService.findAttacksByType(type);
+    }
+
+    @GetMapping("/start")
+    @ResponseStatus(HttpStatus.OK)
+    public String startTheGame(){
+        return attackService.starTheGame();
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.microservice.attack.application.core.utils;
+package io.github.com.attack.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,9 +1,10 @@
-package br.com.microservice.attack.application.service;
+package io.github.com.attack.service;
 
-import br.com.microservice.attack.application.core.domain.Move;
-import br.com.microservice.attack.application.core.utils.ConvertDados;
-import br.com.microservice.attack.application.repository.AttackRepository;
-import br.com.microservice.attack.application.service.clients.MoveFeingClient;
+
+import io.github.com.attack.config.ConvertDados;
+import io.github.com.attack.entity.Move;
+import io.github.com.attack.repository.AttackRepository;
+import io.github.com.attack.service.clients.MoveFeingClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class AttackService {
     public Move findByName(String movimento) {
         return attackRepository.findByName(movimento);
     }
-    public List<Move> findAttacksByType(String tipo){
-        return attackRepository.findByType(tipo);
+    public List<Move> findAttacksByType(String type){
+        return attackRepository.findByType(type);
     }
 }
