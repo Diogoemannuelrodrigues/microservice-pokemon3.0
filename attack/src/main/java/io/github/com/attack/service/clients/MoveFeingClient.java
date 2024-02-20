@@ -10,3 +10,6 @@ public interface MoveFeingClient {
     @GetMapping(value = "/{id}")
     String getMove(@PathVariable("id") Integer id);
 }
+
+
+
