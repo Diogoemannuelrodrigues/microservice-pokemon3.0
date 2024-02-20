@@ -1,6 +1,5 @@
 package io.github.com.attack.entity;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.*;
 
 import javax.persistence.*;

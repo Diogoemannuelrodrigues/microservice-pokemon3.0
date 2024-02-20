@@ -30,4 +30,5 @@ public class MoveController {
     public String startTheGame(){
         return moveService.startTheGame();
     }
+
 }
