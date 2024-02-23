@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -39,14 +38,26 @@ public class MoveService {
         return "Stating the game";
     }
 
-    public Boolean verifyIfPokemonCanToReceiveMove(String nameMove){
+    public Boolean verifyIfPokemonCanToReceiveMove(String nameMove, String pokemon){
         var move = moveRepository.findByName(nameMove);
         var jsonMove = moveFeingClient.getMove(move.getId());
         var listOfPokemonThatCanBeReceiveThisMmove = converterDados.obterDados(jsonMove, MoveRecord.class);
 
-        if (listOfPokemonThatCanBeReceiveThisMmove.learned_by_pokemon().stream().map(pokemonRecord -> pokemonRecord.name().equalsIgnoreCase(move.getName())).isParallel())
+        if (verifyIfContainsPokemonInTheList(pokemon, listOfPokemonThatCanBeReceiveThisMmove)) return true;
+        log.info("{} - This pokemon cannot be received", pokemon);
+        return false;
+    }
+
+    public static boolean verifyIfContainsPokemonInTheList(String pokemon, MoveRecord listOfPokemonThatCanBeReceiveThisMmove) {
+        if (listOfPokemonThatCanBeReceiveThisMmove
+                .learned_by_pokemon()
+                .stream()
+                .anyMatch(pokemonRecord -> pokemonRecord.name().equalsIgnoreCase(pokemon))){
+
+            log.info("{} - This pokemon can be received", pokemon);
             return true;
-        log.info("This pokemon can be receive");
+
+        }
         return false;
     }
 

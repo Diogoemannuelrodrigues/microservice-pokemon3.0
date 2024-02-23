@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record MoveRecord(@JsonProperty("learned_by_pokemon") List<PokemonRecord> learned_by_pokemon) {
+public record MoveRecord(@JsonProperty("learned_by_pokemon") List<PokemonRecord> learned_by_pokemon, @JsonProperty("name") String name) {
     public record PokemonRecord(String name, String url){}
+
+
 }
