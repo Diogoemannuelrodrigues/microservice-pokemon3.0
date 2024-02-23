@@ -31,4 +31,10 @@ public class MoveController {
         return moveService.startTheGame();
     }
 
+    @GetMapping(value = "/adiciona/{nameMove}")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean adicionaAtaque(@PathVariable String nameMove){
+        return moveService.verifyIfPokemonCanToReceiveMove(nameMove);
+    }
+
 }
