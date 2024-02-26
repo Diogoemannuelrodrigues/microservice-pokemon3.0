@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +20,7 @@ public class MoveService {
     private final ConverterDados converterDados;
     private final MoveFeingClient moveFeingClient;
 
+
     public List<Move> getMove() {
         return moveRepository
                 .findAll()
@@ -26,15 +28,16 @@ public class MoveService {
                 .toList();
     }
 
-    //TODO - Create a job for to make this.
     public String startTheGame(){
+        List<Move> moves = new ArrayList<>();
 
-        for (int i = 1; i<2; i++){
+        for (int i = 1; i<919; i++){
             var move = moveFeingClient.getMove(i);
             var moveConverted = converterDados.obterDados(move, Move.class);
+            moves.add(moveConverted);
             moveRepository.save(moveConverted);
         }
-
+        log.info("{}", moves.stream().map(Move::getName).toList());
         return "Stating the game";
     }
 
@@ -60,5 +63,6 @@ public class MoveService {
         }
         return false;
     }
+
 
 }

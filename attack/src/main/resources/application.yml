@@ -16,6 +16,6 @@ spring:
   #Datasource
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/atack
+    url: jdbc:postgresql://localhost:5432/ms-attack
     username: postgres
     password: 123456
