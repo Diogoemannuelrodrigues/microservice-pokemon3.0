@@ -41,27 +41,23 @@ public class MoveService {
         return "Stating the game";
     }
 
-    public Boolean verifyIfPokemonCanToReceiveMove(String nameMove, String pokemon){
+    public String verifyIfPokemonCanToReceiveMove(String nameMove, String pokemon){
         var move = moveRepository.findByName(nameMove);
         var jsonMove = moveFeingClient.getMove(move.getId());
         var listOfPokemonThatCanBeReceiveThisMmove = converterDados.obterDados(jsonMove, MoveRecord.class);
 
-        if (verifyIfContainsPokemonInTheList(pokemon, listOfPokemonThatCanBeReceiveThisMmove)) return true;
-        log.info("{} - This pokemon cannot be received", pokemon);
-        return false;
+        return verifyIfContainsPokemonInTheList(pokemon, listOfPokemonThatCanBeReceiveThisMmove);
     }
 
-    public static boolean verifyIfContainsPokemonInTheList(String pokemon, MoveRecord listOfPokemonThatCanBeReceiveThisMmove) {
+    public static String verifyIfContainsPokemonInTheList(String pokemon, MoveRecord listOfPokemonThatCanBeReceiveThisMmove) {
         if (listOfPokemonThatCanBeReceiveThisMmove
                 .learned_by_pokemon()
                 .stream()
                 .anyMatch(pokemonRecord -> pokemonRecord.name().equalsIgnoreCase(pokemon))){
-
-            log.info("{} - This pokemon can be received", pokemon);
-            return true;
+            return "This pokemon ( "+ pokemon +" ) can be received this move";
 
         }
-        return false;
+        return "This pokemon ( "+ pokemon +" ) cannot be received this move";
     }
 
 

@@ -33,7 +33,7 @@ public class MoveController {
 
     @GetMapping(value = "/adiciona/{nameMove}/nomePoke/{namePoke}")
     @ResponseStatus(HttpStatus.OK)
-    public Boolean adicionaAtaque(@PathVariable String nameMove, @PathVariable String namePoke){
+    public String adicionaAtaque(@PathVariable String nameMove, @PathVariable String namePoke){
         return moveService.verifyIfPokemonCanToReceiveMove(nameMove, namePoke);
     }
 
