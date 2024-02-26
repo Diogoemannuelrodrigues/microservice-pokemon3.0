@@ -10,7 +10,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/move")
+@RequestMapping("/api/v1/move")
 public class MoveController {
 
     private final MoveService moveService;

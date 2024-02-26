@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 0
 
 spring:
   application:
@@ -19,3 +19,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/ms-attack
     username: postgres
     password: 123456
+
+#EUREKA -SERVICE DISCOVERY
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

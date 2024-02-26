@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient
 public class MscloudgatewayApplication {
     public static final String MSPOKEMON = "lb://mspokemon";
-
     public static final String MSATTACK = "lb://msattack";
 
     public static void main(String[] args) {
@@ -34,7 +33,10 @@ public class MscloudgatewayApplication {
                 .route(r -> r.path("/api/v1/treinador/name/{name}").uri(MSPOKEMON))
                 .route(r -> r.path("/api/v1/treinador/{id}").uri(MSPOKEMON))
                 .route(r -> r.path("/api/v1/treinador/adiciona/{treinador}").uri(MSPOKEMON))
-                .route(r -> r.path("/api/v1/attack/start").uri(MSATTACK))
+                .route(r -> r.path("/api/v1/move/start").uri(MSATTACK))
+                .route(r -> r.path("/api/v1/move").uri(MSATTACK))
+                .route(r -> r.path("/api/v1/move/adiciona/{nameMove}/nomePoke/{namePoke}").uri(MSATTACK))
+
                 .build();
     }
 
