@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "1e885ebd-e916-4e7f-aa10-a3caac45b21c",
+		"name": "pokemon 3.0 - Pokemon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8494670",
+		"_collection_link": "https://red-comet-703213.postman.co/workspace/Pokemon2.0~ec0da79a-054d-4d75-ba3a-aded5ff9aca0/collection/8494670-1e885ebd-e916-4e7f-aa10-a3caac45b21c?action=share&source=collection_link&creator=8494670"
+	},
+	"item": [
+		{
+			"name": "Treinador",
+			"item": [
+				{
+					"name": "Create Treinador",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jeane\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/treinador",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"treinador"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Treinador by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/treinador/name/Jeane",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"treinador",
+								"name",
+								"Jeane"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Treinador by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/treinador/651d60410635dc64b89139e1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"treinador",
+								"651d60410635dc64b89139e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adiciona Pokemon",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/treinador/adiciona/Jeane/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"treinador",
+								"adiciona",
+								"Jeane",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View only pokemon by trainer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/treinador/adiciona/Jeane/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"treinador",
+								"adiciona",
+								"Jeane",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pokemon",
+			"item": [
+				{
+					"name": "Start Game",
+					"item": [
+						{
+							"name": "STAR THE GAME",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9090/api/v1/pokemon/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										"api",
+										"v1",
+										"pokemon",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "A API Pokemon é uma poderosa plataforma para salvar informações detalhadas sobre todos os Pokémon conhecidos.\n\n**Salva Pokémons:** Registra informações sobre cada Pokémon muito mais."
+				},
+				{
+					"name": "findByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/name/bulbasaur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"name",
+								"bulbasaur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByName Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPokemons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Next evolutions/{name}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/evolutions/bulbasaur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"evolutions",
+								"bulbasaur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verificaEvolution/{treinador}/pokemon/{pokemonName}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/verificaEvolution/Jeane/pokemon/bulbasaur/stone/fire",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"verificaEvolution",
+								"Jeane",
+								"pokemon",
+								"bulbasaur",
+								"stone",
+								"fire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/evoluir/{pokemonName}/teinador/{treinador}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/pokemon/evoluir/bulbasaur/teinador/Jeane",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"pokemon",
+								"evoluir",
+								"bulbasaur",
+								"teinador",
+								"Jeane"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

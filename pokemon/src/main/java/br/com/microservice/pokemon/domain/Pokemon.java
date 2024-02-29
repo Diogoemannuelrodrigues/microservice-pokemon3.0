@@ -2,10 +2,7 @@ package br.com.microservice.pokemon.domain;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
@@ -23,13 +20,14 @@ public class Pokemon {
     @JsonAlias("abilities")
     private List<AbilityInfo> abilities;
     @JsonAlias("base_experience")
-    private String base_experience;
+    private String baseExperience;
     private String name;
     @JsonAlias("moves")
-    private List<MoveInfo> moves;
+    private List<MoveInfo> moveInfos;
+    @JsonAlias("sprites")
+    private Sprites sprites;
     @JsonAlias("stats")
     private List<StatInfo> states;
-
     @JsonAlias("types")
     private List<TypeInfo> types;
     private Integer weight;

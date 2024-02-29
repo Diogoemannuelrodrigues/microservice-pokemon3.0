@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Move {
+
     @JsonAlias("name")
     private String name;
     @JsonAlias("url")
