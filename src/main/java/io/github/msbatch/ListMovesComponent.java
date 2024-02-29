@@ -22,7 +22,8 @@ public class ListMovesComponent {
         findListMovesService.executarOperacoesEmLote();
     }
 
-    @Scheduled(cron = "0 0 6 * * *")
+    /*@Scheduled(cron = "0 0 6 * * *")*/
+    @Scheduled(fixedDelay = 5000)
     public void starTheGame() {
         log.info("Starter Processing unblock schedulers by time.");
         startTheGameService.startTheGame();
