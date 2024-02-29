@@ -1,6 +1,7 @@
 package io.github.msbatch.service;
 
 import io.github.msbatch.Move;
+import io.github.msbatch.repository.MoveRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +12,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 @Slf4j
 @Service
 public class StartTheGameService {
 
     private final ConverterDados converterDados;
+    private final MoveRepository moveRepository;
 
-    public StartTheGameService(ConverterDados converterDados) {
+    public StartTheGameService(ConverterDados converterDados, MoveRepository moveRepository) {
         this.converterDados = converterDados;
+        this.moveRepository = moveRepository;
     }
 
     public List<Move> startTheGame() {
@@ -44,8 +46,8 @@ public class StartTheGameService {
                     buf.close();
                     String moveData = build.toString();
                     Move move = converterDados.obterDados(moveData, Move.class);
-                    log.info(move.getName() + " - This move can be received");
                     moves.add(move);
+                    log.info("{} - {}", move.getId(), move.getName());
                 } else {
                     throw new IOException("Failed to fetch move data: " + connection.getResponseCode());
                 }
@@ -53,6 +55,8 @@ public class StartTheGameService {
         } catch (IOException e) {
             log.info( "An error occurred while fetching move data", e);
         }
+        moveRepository.saveAll(moves);
+        log.info("{}", moves);
         return moves;
     }
 }
