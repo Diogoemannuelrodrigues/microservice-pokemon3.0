@@ -18,23 +18,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class MoveService {
 
+    public static final String POKEAPI_CO_API_V_2_MOVE = "https://pokeapi.co/api/v2/move/";
     private final MoveRepository moveRepository;
     private final ConvertDados converterDados;
 
 
     public void start() {
         log.info("Starting/Reset the game.");
-        String apiUrl = "https://pokeapi.co/api/v2/move/";
         List<Move> moves = new ArrayList<>();
         try {
             for (int i = 1; i < 919; i++) {
-                String count = apiUrl + i;
+                String count = POKEAPI_CO_API_V_2_MOVE + i;
                 HttpURLConnection connection = getHttpURLConnection(count);
 
                 filtragem(connection, moves);
@@ -77,5 +78,12 @@ public class MoveService {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), orderBy);
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return moveRepository.findAll(pageRequest).map(MoveResponse::toEntityFromResponse);
+    }
+
+    public MoveResponse moveByName(String name){
+        return moveRepository
+                .findByName(name)
+                .map(MoveResponse::toEntityFromResponse)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

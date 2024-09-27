@@ -1,6 +1,5 @@
 package br.com.microservice.pokemon.controller;
 
-import br.com.microservice.pokemon.domain.Move;
 import br.com.microservice.pokemon.domain.records.MoveResponse;
 import br.com.microservice.pokemon.service.MoveService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +24,11 @@ public class MoveController {
                                                            @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
         return ResponseEntity.ok().body(moveService.movesPages(page, size, orderBy, direction));
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<MoveResponse> findByName(@RequestParam String name) {
+        return ResponseEntity.ok().body(moveService.moveByName(name));
+    }
+
 
 }
