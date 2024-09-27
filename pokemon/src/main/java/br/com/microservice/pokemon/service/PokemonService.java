@@ -31,6 +31,7 @@ public class PokemonService {
     private ModelMapper mapper;
     private final TreinadorRepository treinadorRepository;
     private final StoneService stoneService;
+    private final MoveService moveService;
 
     public Pokemon convertPokemon(String json) {
         var pokemon = convertDados.obterDados(json, Pokemon.class);
@@ -65,7 +66,7 @@ public class PokemonService {
             repository.save(pokeConverted);
             log.info(String.valueOf(pokeConverted));
         }
-
+        moveService.start();
         return "the game can start now";
     }
 

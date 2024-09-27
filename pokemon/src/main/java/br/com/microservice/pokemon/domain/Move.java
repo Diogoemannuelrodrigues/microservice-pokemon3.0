@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
@@ -15,11 +17,34 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Document(collection = "move")
 public class Move {
+
+    @Id
+    private String id;
 
     @JsonAlias("name")
     private String name;
 
     @JsonAlias("url")
     private String url;
+
+    @JsonAlias("accuracy")
+    private int accuracy;
+
+    @JsonAlias("effect_chance")
+    private String effect_chance;
+
+    @JsonAlias("power")
+    private Integer power;
+
+    @JsonAlias("type")
+    private Type type;
+
+    @JsonProperty("damage_class")
+    private Dano damage_class;
+
+    @JsonAlias("learned_by_pokemon")
+    private List<PokemonDTO> learned_by_pokemon;
+
 }

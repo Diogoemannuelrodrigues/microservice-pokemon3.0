@@ -5,7 +5,6 @@ import br.com.microservice.pokemon.domain.MoveInfo;
 import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.repository.PokemonRepository;
 import br.com.microservice.pokemon.utils.ConvertDados;
-import lombok.var;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -53,7 +52,7 @@ class PokemonServiceTest {
         Pokemon pokemon =
                 Pokemon.builder()
                         .id(id)
-                        .moveInfos(Arrays.asList(move1, move1, move1, move1, move1))
+                        .moves(Arrays.asList(move1, move1, move1, move1, move1))
                 .build();
 
         Mockito.when(service.findById(id)).thenReturn(Optional.ofNullable(pokemon));

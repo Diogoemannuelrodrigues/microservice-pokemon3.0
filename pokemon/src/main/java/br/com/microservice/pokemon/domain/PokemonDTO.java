@@ -17,8 +17,12 @@ import java.util.List;
 public class PokemonDTO {
 
     private String id;
+
     private String name;
+
+    private String url;
+
     @JsonAlias("types")
     private List<TypeInfo> types;
-    private List<MoveInfo> moves;
+
 }

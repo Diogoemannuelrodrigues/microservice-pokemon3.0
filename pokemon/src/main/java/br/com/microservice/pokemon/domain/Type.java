@@ -14,7 +14,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Type {
+
     @JsonProperty("name")
     private String name;
+
+    @JsonProperty("url")
+    private String url;
 
 }
