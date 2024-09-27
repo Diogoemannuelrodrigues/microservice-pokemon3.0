@@ -2,6 +2,7 @@ package br.com.microservice.pokemon.controller;
 
 import br.com.microservice.pokemon.domain.Pokemon;
 import br.com.microservice.pokemon.domain.PokemonDTO;
+import br.com.microservice.pokemon.domain.records.PokemonResponse;
 import br.com.microservice.pokemon.service.PokemonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PokemonController {
     }
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<PokemonDTO>> findAllPokemons() {
+    public ResponseEntity<List<PokemonResponse>> findAllPokemons() {
         return ResponseEntity.ok().body(service.findAllPokemon());
     }
     //TODO

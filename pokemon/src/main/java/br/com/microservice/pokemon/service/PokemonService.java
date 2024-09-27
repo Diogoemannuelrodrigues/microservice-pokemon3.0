@@ -1,6 +1,7 @@
 package br.com.microservice.pokemon.service;
 
 import br.com.microservice.pokemon.domain.*;
+import br.com.microservice.pokemon.domain.records.PokemonResponse;
 import br.com.microservice.pokemon.repository.PokemonRepository;
 import br.com.microservice.pokemon.repository.TreinadorRepository;
 import br.com.microservice.pokemon.service.clients.GlitchfeignClient;
@@ -77,13 +78,13 @@ public class PokemonService {
                 .findFirst(); //Retorna o 1 que achou
     }
 
-    public List<PokemonDTO> findAllPokemon() {
-        mapper = new ModelMapper();
+    public List<PokemonResponse> findAllPokemon() {
         return repository.
                 findAll().
                 stream().
-                map(pokemon -> mapper.map(pokemon, PokemonDTO.class)).
+                map(PokemonResponse::toEntityFromResponse).
                 collect(Collectors.toList());
+
     }
 
     public String getEvolvePokémon(String pokemon, String treinador1) {
