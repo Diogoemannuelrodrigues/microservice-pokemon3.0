@@ -20,4 +20,5 @@ public class PokemonDTO {
     private String name;
     @JsonAlias("types")
     private List<TypeInfo> types;
+    private List<MoveInfo> moves;
 }

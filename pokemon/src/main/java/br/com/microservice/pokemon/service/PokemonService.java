@@ -9,7 +9,6 @@ import br.com.microservice.pokemon.utils.ConvertDados;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +40,8 @@ public class PokemonService {
     public Optional<Pokemon> findById(String id) {
         var pokemon = repository.findById(id);
         if (pokemon.isPresent()) {
-            var moves = pokemon.get().getMoveInfos().subList(0, 4);
-            pokemon.get().setMoveInfos(moves);
+            var moves = pokemon.get().getMoves().subList(0, 4);
+            pokemon.get().setMoves(moves);
             return pokemon;
         }
         return Optional.empty();
@@ -71,7 +70,7 @@ public class PokemonService {
     }
 
     public Optional<MoveInfo> getAdicionaMove(Pokemon pokemon, String nameMove) {
-        return pokemon.getMoveInfos() //pega os moves
+        return pokemon.getMoves() //pega os moves
                 .stream() //faz o stream
                 .filter(moveInfo -> moveInfo.getMove().getName().contains(nameMove)) //filtra por nameMOve
                 .findFirst(); //Retorna o 1 que achou
@@ -96,7 +95,7 @@ public class PokemonService {
                 .map(String::toLowerCase)
                 .anyMatch(listPokemon -> listPokemon.equals(pokemon));
 
-        if(isPresent) {
+        if (isPresent) {
             var containPokemon = treinador.getPokemons()
                     .stream()
                     .filter(pokemon2 -> pokemon2.getName().equalsIgnoreCase(pokemon))
@@ -113,7 +112,7 @@ public class PokemonService {
             var vericaSeFamiliaEhMaiorQueEstagioAtual = verificaProximaEvolucao.getFamily().getEvolutionStage() >
                     verificaProximaEvolucao.getFamily().getEvolutionLine().size();
 
-            if(next != null && !vericaSeFamiliaEhMaiorQueEstagioAtual){
+            if (next != null && !vericaSeFamiliaEhMaiorQueEstagioAtual) {
                 var pokeNewEvolution = repository.findByName(next.toLowerCase());
                 containPokemon.setName(next);
                 containPokemon.setStates(pokeNewEvolution.getStates());
@@ -122,7 +121,7 @@ public class PokemonService {
                 treinadorRepository.save(treinador);
                 return POKEMON_EVOLUIDO;
             }
-                return NAO_PODE_SER_EVOLUIDO;
+            return NAO_PODE_SER_EVOLUIDO;
         }
 
         return NAO_PODE_SER_EVOLUIDO;
@@ -140,7 +139,7 @@ public class PokemonService {
         var pokemon = getByPokemon(namePoke, treinador1);
 
         var resultValidate = pokemon.isPresent() && getCheckIfItCanEvolve(pokemon.get(), stone);
-        if (resultValidate){
+        if (resultValidate) {
             return "Seu pokemon evoluiu com a pedra " + stone;
         }
         return "Seu pokemon nao pode evoluir com a pedra " + stone;
@@ -156,8 +155,8 @@ public class PokemonService {
     }
 
     /**
-     *  Metodo para verificar se pode evoluir o pokemon com pedra de evolucao..
-     * */
+     * Metodo para verificar se pode evoluir o pokemon com pedra de evolucao..
+     */
     public Boolean getCheckIfItCanEvolve(Pokemon pokemon, String pedra) {
         Stone stone = stoneService.getStoneByName(pedra);
 

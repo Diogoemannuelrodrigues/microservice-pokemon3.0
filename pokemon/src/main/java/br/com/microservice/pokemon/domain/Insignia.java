@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Id;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +15,7 @@ import javax.persistence.Id;
 @Document(collection = "insignia")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Insignia {
+
     @Id
     private String id;
 

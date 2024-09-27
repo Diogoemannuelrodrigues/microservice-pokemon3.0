@@ -3,7 +3,6 @@ package br.com.microservice.pokemon.controller;
 import br.com.microservice.pokemon.domain.Treinador;
 import br.com.microservice.pokemon.domain.TreinadorDto;
 import br.com.microservice.pokemon.service.TreinadorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

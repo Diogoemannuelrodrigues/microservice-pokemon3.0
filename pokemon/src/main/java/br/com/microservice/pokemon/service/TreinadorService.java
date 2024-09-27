@@ -1,6 +1,5 @@
 package br.com.microservice.pokemon.service;
 
-import br.com.microservice.pokemon.domain.PokemonDTO;
 import br.com.microservice.pokemon.domain.Treinador;
 import br.com.microservice.pokemon.domain.TreinadorDto;
 import br.com.microservice.pokemon.repository.PokemonRepository;
@@ -8,13 +7,10 @@ import br.com.microservice.pokemon.repository.TreinadorRepository;
 import br.com.microservice.pokemon.utils.exceptions.TreinadorNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 
@@ -62,7 +58,7 @@ public class TreinadorService {
             treinador.setPokemons(new ArrayList<>());
         }
 
-        pokemon.ifPresent(pokemon1 -> pokemon1.getMoveInfos().clear());
+        pokemon.ifPresent(pokemon1 -> pokemon1.getMoves().clear());
         pokemon.ifPresent(pokemon2 -> treinador.getPokemons().add(pokemon2));
 
         treinadorRepository.save(treinador);

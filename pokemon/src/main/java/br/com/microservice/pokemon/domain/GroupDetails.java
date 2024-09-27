@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Ability {
+public class GroupDetails {
 
-    @JsonAlias("name")
-    private String name;
-    @JsonAlias("url")
-    private String url;
+    @JsonAlias("level_learned_at")
+    private Integer level_learned_at;
 
 }
