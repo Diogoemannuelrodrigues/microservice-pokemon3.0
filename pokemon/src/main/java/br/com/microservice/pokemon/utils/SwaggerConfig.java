@@ -17,23 +17,33 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
+
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("Pokemon API")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("br.com.microservice"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.microservice.pokemon.controller"))
                 .paths(PathSelectors.any())
                 .build()
+                .useDefaultResponseMessages(false)
                 .apiInfo(apiInfo());
-
     }
 
     private ApiInfo apiInfo() {
+
         return new ApiInfoBuilder()
-                .title("API - POKEDEX")
-                .description("Aplicação spring POKEDEX")
-                .version("1.0.0")
-                .license("Apache License Version 2.0")
+                .title("POKEDEX API")
+                .description(
+                        "API responsável pelo gerenciamento " +
+                                "de Pokémons e seus movimentos. " +
+                                "Funcionalidades: " +
+                                "- Verificar movimentos " +
+                                "- Iniciar jogo " +
+                                "- Consultar Pokémons"
+                ).version("1.0.0")
+                .termsOfServiceUrl("https://seudominio.com/termos")
+                .license("Apache 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .contact(new Contact("Diogo Emannuel", "https://treinaweb.com.br", "diogoemannuel.rodrigues1@gmail.com"))
+                .contact(new Contact("Diogo Emannuel", "https://github.com/seu-github", "diogoemannuel.rodrigues1@gmail.com"))
                 .build();
     }
 }
